@@ -1,4 +1,4 @@
-import puppeteer from "puppeteer";
+import chromium from "chrome-aws-lambda";
 
 interface IOGData {
   title: string;
@@ -10,7 +10,7 @@ interface IOGData {
 }
 
 const extract = async (link: string): Promise<IOGData> => {
-  const browser = await puppeteer.launch();
+  const browser = await chromium.puppeteer.launch();
   const newPage = await browser.newPage();
 
   await newPage.goto(link);
