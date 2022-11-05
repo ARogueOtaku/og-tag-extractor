@@ -1,5 +1,4 @@
-import chromium from "chrome-aws-lambda";
-
+import * as cheerio from "cheerio";
 interface IOGData {
   title: string;
   description?: string;
@@ -10,40 +9,26 @@ interface IOGData {
 }
 
 const extract = async (link: string): Promise<IOGData> => {
-  const browser = await chromium.puppeteer.launch();
-  const newPage = await browser.newPage();
+  const html = await (await fetch(link)).text();
+  const $ = cheerio.load(html);
 
-  await newPage.goto(link);
-
-  const ogTitleText = await newPage.evaluate(() =>
-    document.head.querySelector(`meta[property="og:title"]`)?.getAttribute("content")
-  );
-  const titleTagText = await newPage.evaluate(() => document.head.querySelector("title")?.innerText);
+  const ogTitleText = $(`meta[property="og:title"]`)?.attr("content");
+  const titleTagText = $("title")?.text();
   const title = ogTitleText ?? titleTagText ?? link;
 
-  const ogUrl = await newPage.evaluate(() =>
-    document.head.querySelector(`meta[property="og:url"]`)?.getAttribute("content")
-  );
+  const ogUrl = $(`meta[property="og:url"]`)?.attr("content");
   const url = ogUrl ?? link;
 
-  const ogDescriptionText = await newPage.evaluate(() =>
-    document.head.querySelector(`meta[property="og:description"]`)?.getAttribute("content")
-  );
+  const ogDescriptionText = $(`meta[property="og:description"]`)?.attr("content");
   const description = ogDescriptionText ?? undefined;
 
-  const ogImageText = await newPage.evaluate(() =>
-    document.head.querySelector(`meta[property="og:image"]`)?.getAttribute("content")
-  );
+  const ogImageText = $(`meta[property="og:image"]`)?.attr("content");
   const image = ogImageText ?? undefined;
 
-  const ogTypeText = await newPage.evaluate(() =>
-    document.head.querySelector(`meta[property="og:type"]`)?.getAttribute("content")
-  );
+  const ogTypeText = $(`meta[property="og:type"]`)?.attr("content");
   const type = ogTypeText ?? undefined;
 
-  const ogLocaleText = await newPage.evaluate(() =>
-    document.head.querySelector(`meta[property="og:locale"]`)?.getAttribute("content")
-  );
+  const ogLocaleText = $(`meta[property="og:locale"]`)?.attr("content");
   const locale = ogLocaleText ?? undefined;
 
   return {
