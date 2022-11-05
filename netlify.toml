@@ -1,8 +1,12 @@
 [build]
     functions = "functions"
-#     command = "netlify-lambda install"
-# [[redirects]]
-#   from = "https://covbot.netlify.app/"
-#   to = "https://arogueotaku.github.io/IndiaCOVIDStatsBot/"
-#   status = 301
-#   force = true
+    command = "netlify-lambda install"
+
+[functions]
+    external_node_modules = ["import-fresh"]
+
+[[redirects]]
+  from = "https://ogextractor.netlify.app/"
+  to = "https://github.com/ARogueOtaku/og-tag-extractor"
+  status = 301
+  force = true
