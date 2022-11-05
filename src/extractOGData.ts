@@ -1,4 +1,5 @@
 import * as cheerio from "cheerio";
+import nfetch from "node-fetch";
 interface IOGData {
   title: string;
   description?: string;
@@ -9,7 +10,7 @@ interface IOGData {
 }
 
 const extract = async (link: string): Promise<IOGData> => {
-  const html = await (await fetch(link)).text();
+  const html = await (await nfetch(link)).text();
   const $ = cheerio.load(html);
 
   const ogTitleText = $(`meta[property="og:title"]`)?.attr("content");
