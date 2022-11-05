@@ -1,6 +1,6 @@
 [build]
     functions = "functions"
-    command = "netlify-lambda install"
+    # command = "netlify-lambda install"
 
 [functions]
     external_node_modules = ["import-fresh"]
