@@ -1,0 +1,21 @@
+{
+  "name": "og-tag-extractor",
+  "version": "1.0.0",
+  "description": "A Simple Utility to extract Open Graph Tags from Webpages",
+  "main": "./functions/ogExtractionHandler.ts",
+  "scripts": {
+    "init": "tsc --init",
+    "dev": "netlify dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@netlify/functions": "^1.3.0",
+    "netlify-cli": "^12.1.0",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "puppeteer": "^19.2.2"
+  }
+}

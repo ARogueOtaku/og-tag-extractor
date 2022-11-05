@@ -1,0 +1,8 @@
+[build]
+    functions = "functions"
+#     command = "netlify-lambda install"
+# [[redirects]]
+#   from = "https://covbot.netlify.app/"
+#   to = "https://arogueotaku.github.io/IndiaCOVIDStatsBot/"
+#   status = 301
+#   force = true
