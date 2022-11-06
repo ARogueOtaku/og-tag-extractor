@@ -1,6 +1,7 @@
 import * as cheerio from "cheerio";
 import nfetch from "node-fetch";
 interface IOGData {
+  success: boolean;
   title: string;
   description?: string;
   image?: string;
@@ -33,6 +34,7 @@ const extract = async (link: string): Promise<IOGData> => {
   const locale = ogLocaleText ?? undefined;
 
   return {
+    success: true,
     title,
     url,
     description,
