@@ -6,7 +6,13 @@
     external_node_modules = ["import-fresh"]
 
 [[redirects]]
-  from = "https://ogextractor.netlify.app/"
+  from = "/"
   to = "https://github.com/ARogueOtaku/og-tag-extractor"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/extract"
+  to = "/.netlify/functions/ogExtractionHandler"
   status = 301
   force = true

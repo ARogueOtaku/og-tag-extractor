@@ -33,6 +33,8 @@ const extract = async (link: string): Promise<IOGData> => {
   const ogLocaleText = $(`meta[property="og:locale"]`)?.attr("content");
   const locale = ogLocaleText ?? undefined;
 
+  console.log(JSON.stringify({ description }));
+
   return {
     success: true,
     title,

@@ -9,13 +9,19 @@ const handler: Handler = async (event: HandlerEvent) => {
     if (!protocol) url = "https://" + url;
     const extractedData = await extract(url);
     return {
-      headers: { "Access-Control-Allow-Origin": "*" },
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-type": "text/plain; charset=utf-8",
+      },
       statusCode: 200,
       body: JSON.stringify(extractedData),
     };
   } catch (e: any) {
     return {
-      headers: { "Access-Control-Allow-Origin": "*" },
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-type": "text/plain; charset=utf-8",
+      },
       statusCode: 500,
       body: JSON.stringify({ success: false, title: e.message, url: "" }),
     };
