@@ -2,7 +2,7 @@
 
 ## Endpoint
 
-You can send a HTTTP GET Request to **https://ogextractor.netlify.app/extract?url=`<URL>`** where URL is the url for which you want the Open Graph Data.
+You can send a HTTTP GET Request to `https://ogextractor.netlify.app/extract?url=<URL>` where URL is the url for which you want the Open Graph Data.
 
 ## Response
 
